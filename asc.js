@@ -10,7 +10,7 @@ function spit (loc,coc,desc) {
         console.log(
            "["
            +filename+
-           " "
+           "@"
            +loc+
            ":"
            +coc+
@@ -69,14 +69,29 @@ ast = new ast_top();
 
 /* process labels */
 for (i in asc) {
-	if (asc[i][0] == ':') {
+	fch = asc[i][0];
+	/* :label line */
+	if (fch == ':') {
 		node = new ast_node();
 		node.cmd = 'label';
 		node.loc = i;
 		node.coc = 0;
 		node.param.push(asc[i].substr(1));
 		ast.children.push(node);
+		continue;
 	}
+	/* ! comment line */
+	if (fch == '!') {
+		continue;
+	}
+	/* if we reach here we assume that the line
+	makes no sense to us */
+	node = new ast_node();
+	node.cmd = 'error_nonsense';
+	node.loc = i;
+	node.coc = 0;
+	node.param.push(asc[i].substr(1));
+	ast.children.push(node);
 };
 
 /* check syntax and build ast */
@@ -84,6 +99,10 @@ labels = Array(); // list labels for dupe check
 
 while (child = ast.childNext()) {
     param = child.param;
+    if(child.cmd == 'error_nonsense') {
+	desc = "Parser expects valid OP code, label or something."
+        spit(child.loc,child.coc,desc);
+    }
     if (child.cmd == 'label') {
         if (param[0] != 'main') {
             if (labels[0] != 'main') {
