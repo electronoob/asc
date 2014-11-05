@@ -1,4 +1,5 @@
 fs = require('fs');
+http = require('http');
 
 /* spit the dummy */
 function spit (loc,coc,desc) {
@@ -17,7 +18,6 @@ function spit (loc,coc,desc) {
            "]"
         );
         console.log(asc[loc]);
-        i=0;
         padding = '';
         for(i=0;i<coc;i++) padding += ' ';
         console.log(padding + "^");
@@ -55,6 +55,19 @@ function ast_top() {
 		}
 	}
 }
+/* object literal */
+var optbl = {
+    inc:  { id: 0x01, ac: 0, at: null },
+    dec:  { id: 0x02, ac: 0, at: null },
+    ret:  { id: 0x03, ac: 0, at: null },
+    jmp:  { id: 0x04, ac: 1, at: {1: 'label'} },
+    call: { id: 0x05, ac: 1, at: {1: 'label'} },
+    push: { id: 0x06, ac: 1, at: {1: 'hex|register'} },
+    pop:  { id: 0x07, ac: 1, at: {1: 'register'} },
+    mov:  { id: 0x08, ac: 2, at: {1: 'register', 2: 'hex|register'} },
+    div:  { id: 0x09, ac: 2, at: {1: 'register', 2: 'hex|register'} },
+    mul:  { id: 0x0A, ac: 2, at: {1: 'register', 2: 'hex|register'} }
+};
 
 filename = 'source.asc';
 data = fs.readFileSync(filename);
@@ -67,9 +80,15 @@ asc = asc_clean; delete asc_clean; delete data;
 
 ast = new ast_top();
 
+function has_opcode(line) {
+    
+    return -1;
+}
 /* process labels */
 for (i in asc) {
+	/* fch: first character of line */
 	fch = asc[i][0];
+        $opcode = has_opcode(asc[i]);
 	/* :label line */
 	if (fch == ':') {
 		node = new ast_node();
@@ -84,6 +103,7 @@ for (i in asc) {
 	if (fch == '!') {
 		continue;
 	}
+        
 	/* if we reach here we assume that the line
 	makes no sense to us */
 	node = new ast_node();
