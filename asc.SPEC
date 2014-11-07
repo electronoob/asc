@@ -4,7 +4,6 @@
     No code allowed to preceed :main.
 :labels
     If duplicate detected then process halted.
-
 !
     First character of line must be marked
     with '!' symbol to be understood as a
