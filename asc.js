@@ -37,6 +37,7 @@ function ast_node() {
 		if(this.children.length > 0) return 1;
 		return 0;
 	};
+        this.block = 0;
 };
 function ast_top() {
 	this.id = 0;
@@ -125,7 +126,7 @@ function read_opcode(line) {
             if (template.indexOf(type) == -1) {
                 /* script has an unknown argument type */
                 operation.av[j] = null;
-                //operation.at[j] = 'unknown'
+                operation.adt[j] = 'type_unknown';
                 operation.error = true;
                 operation.reason = 'arg_type';
             } else {
@@ -199,7 +200,16 @@ for (i in asc) {
               to know the subsection we are in. :label block
             */
             if(current_code_block != null) {
-
+                node = new ast_node();
+                node.cmd = operation.id;
+                node.loc = i;
+                node.coc = 0;
+                if(operation.ac > 0) {
+                    node.param = operation.av;
+                }
+                node.block = current_code_block;
+                ast.children.push(node);
+                continue;
             } else {
                 node = new ast_node();
                 node.cmd = 'error_opfound_nomain';
@@ -262,7 +272,6 @@ while (child = ast.childNext()) {
         desc = "Parser found argument type mismatch."
         spit(child.loc,child.coc,desc);
     }
-
     if (child.cmd == 'label') {
         if (param[0] != 'main') {
             if (labels[0] != 'main') {
@@ -284,5 +293,3 @@ while (child = ast.childNext()) {
 if (labels.indexOf('main') == -1) {
     spit(-1,-1,":main is missing!");
 }
-
-//console.log (ast) ;
