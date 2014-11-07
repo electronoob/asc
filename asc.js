@@ -173,9 +173,24 @@ for (i in asc) {
         operation = read_opcode(asc[i]);
         if((operation.error) && (operation.reason != 'op_undefined')) {
             /* we have some kind of error which we need to decode */
-            console.log (i+":error: "+operation.reason);
-            console.log(operation);
-            console.log(asc[i]);
+            //console.log (i+":error: "+operation.reason);
+            //console.log(operation);
+            //console.log(asc[i]);
+            if (operation.reason == 'arg_type') {
+                node = new ast_node();
+                node.cmd = 'error_oparg_type';
+                node.loc = i;
+                node.coc = 0;
+                ast.children.push(node);
+            }
+            if (operation.reason == 'arg_count') {
+                node = new ast_node();
+                node.cmd = 'error_oparg_count';
+                node.loc = i;
+                node.coc = 0;
+                ast.children.push(node);
+            }
+
             continue;
         }
         if (!operation.error) {
@@ -190,7 +205,6 @@ for (i in asc) {
                 node.cmd = 'error_opfound_nomain';
                 node.loc = i;
                 node.coc = 0;
-                node.param.push(asc[i].substr(1));
                 ast.children.push(node);
                 continue;
             }
@@ -240,6 +254,14 @@ while (child = ast.childNext()) {
         desc = "Parser discovered a valid opcode but expecting :main."
         spit(child.loc,child.coc,desc);
     }
+    if(child.cmd == 'error_oparg_count') {
+        desc = "Parser found argument count mismatch."
+        spit(child.loc,child.coc,desc);
+    }
+    if(child.cmd == 'error_oparg_type') {
+        desc = "Parser found argument type mismatch."
+        spit(child.loc,child.coc,desc);
+    }
 
     if (child.cmd == 'label') {
         if (param[0] != 'main') {
@@ -263,4 +285,4 @@ if (labels.indexOf('main') == -1) {
     spit(-1,-1,":main is missing!");
 }
 
-console.log (ast) ;
+//console.log (ast) ;
