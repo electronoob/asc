@@ -1,5 +1,4 @@
 fs = require('fs');
-http = require('http');
 
 /* spit the dummy */
 function spit (loc,coc,desc) {
@@ -330,3 +329,5 @@ while (child = ast.childNext()) {
         }
     }
 }
+
+/* at this point the AST is built - now time to spit out code */
