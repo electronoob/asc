@@ -555,6 +555,147 @@ var regtbl = {
     }
 };
 
+
+
+function ADC(args) {
+    console.log("TODO: ADC");
+}
+function ADD(args) {
+    console.log("TODO: ADD");
+}
+function AND(args) {
+    console.log("TODO: AND");
+}
+function BIT(args) {
+    console.log("TODO: BIT");
+}
+function CALL(args) {
+    console.log("TODO: CALL");
+}
+function CCF(args) {
+    console.log("TODO: CCF");
+}
+function CP(args) {
+    console.log("TODO: CP");
+}
+function CPL(args) {
+    console.log("TODO: CPL");
+}
+function DAA(args) {
+    console.log("TODO: DAA");
+}
+function DEC(args) {
+    console.log("TODO: DEC");
+}
+function DI(args) {
+    console.log("TODO: DI");
+}
+function EI(args) {
+    console.log("TODO: EI");
+}
+function HALT(args) {
+    console.log("TODO: HALT");
+}
+function INC(args) {
+    console.log("TODO: INC");
+}
+function JP(args) {
+    console.log("TODO: JP");
+}
+function JR(args) {
+    console.log("TODO: JR");
+}
+function LD(args) {
+    console.log("TODO: LD");
+}
+function LDH(args) {
+    console.log("TODO: LDH");
+}
+function NOP(args) {
+    console.log("TODO: NOP");
+}
+function OR(args) {
+    console.log("TODO: OR");
+}
+function POP(args) {
+    console.log("TODO: POP");
+}
+function PREFIX(args) {
+    console.log("TODO: PREFIX");
+}
+function PUSH(args) {
+    console.log("TODO: PUSH");
+}
+function RES(args) {
+    console.log("TODO: RES");
+}
+function RET(args) {
+    console.log("TODO: RET");
+}
+function RETI(args) {
+    console.log("TODO: RETI");
+}
+function RL(args) {
+    console.log("TODO: RL");
+}
+function RLA(args) {
+    console.log("TODO: RLA");
+}
+function RLC(args) {
+    console.log("TODO: RLC");
+}
+function RLCA(args) {
+    console.log("TODO: RLCA");
+}
+function RR(args) {
+    console.log("TODO: RR");
+}
+function RRA(args) {
+    console.log("TODO: RRA");
+}
+function RRC(args) {
+    console.log("TODO: RRC");
+}
+function RRCA(args) {
+    console.log("TODO: RRCA");
+}
+function RST(args) {
+    console.log("TODO: RST");
+}
+function SBC(args) {
+    console.log("TODO: SBC");
+}
+function SCF(args) {
+    console.log("TODO: SCF");
+}
+function SET(args) {
+    console.log("TODO: SET");
+}
+function SLA(args) {
+    console.log("TODO: SLA");
+}
+function SRA(args) {
+    console.log("TODO: SRA");
+}
+function SRL(args) {
+    console.log("TODO: SRL");
+}
+function STOP(args) {
+    console.log("TODO: STOP");
+}
+function SUB(args) {
+    console.log("TODO: SUB");
+}
+function SWAP(args) {
+    console.log("TODO: SWAP");
+}
+function XOR(args) {
+    console.log("TODO: XOR");
+}
+
+
+
+
 function ast_node() {
     /*jshint validthis:true */
     this.cmd = 0;

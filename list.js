@@ -506,4 +506,6 @@ Object.keys(optbl).forEach(key => {
     //console.log(key);          // the name of the current key.
     opt[key.split(" ")[0]] = 1;
 });
-console.log(opt);
+Object.keys(opt).forEach(key => {
+    console.log("function " + key + "(args) {\n    console.log(\"TODO: "+key+"\");\n}");          // the name of the current key.
+});
