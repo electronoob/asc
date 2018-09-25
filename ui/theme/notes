@@ -1,0 +1,3 @@
+ cat *.xpm | grep -v "* XPM *"|  sed 's\static char [*] \this.\' | sed 's\[[]]\\' | sed 's\{\[\' |  sed 's\}\]\' > xpm.js
+
+
