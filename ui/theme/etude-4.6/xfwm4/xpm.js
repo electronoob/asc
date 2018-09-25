@@ -1,4 +1,16 @@
 function xpm_template() {
+/*
+this.button_layout=O|HMC;
+this.button_offset=3;
+this.button_spacing=3;
+this.maximized_offset=4;
+this.title_vertical_offset_active=1;
+this.title_vertical_offset_inactive=1;
+this.active_text_color=#fcfcfc;
+this.inactive_text_color=#f9fbfe;
+this.shadow_delta_x=-4;
+this.shadow_delta_y=-4;
+*/
 this.bottom_active_xpm = [
 "4 3 3 1",
 " 	c None",
