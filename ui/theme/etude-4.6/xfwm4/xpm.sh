@@ -21,6 +21,29 @@ cat *.xpm | grep -v "* XPM *"|  sed 's\static char [*] \this.xpm.\' | sed 's\[[]
 echo "}" >> xpm.js
 
 echo '
+var theme = new xpm_template();
+
+Object.keys(theme.xpm).forEach(function (element){
+        let xpm = get_xpm_data(element);
+        console.log(element, xpm.width, xpm.height, xpm.colors, xpm.cpp);
+});
+
+// returns width, height obj
+function get_xpm_data(data) {
+  let row = theme.xpm[data][0].split(" ");
+  let width = parseInt(row[0]);
+  let height = parseInt(row[1]);
+  let colors = parseInt(row[2]);
+  let cpp = parseInt(row[3])
+  let ctable = theme.xpm[data].slice(1,colors+1);
+  let pixels = theme.xpm[data].slice(colors+1);
+  return {width: width, height: height, colors: colors, cpp: cpp, ctable: ctable, pixels:pixels};
+}
+
+'>>xpm.js
+
+
+echo '
 
 /*
 List of decoration part names.
