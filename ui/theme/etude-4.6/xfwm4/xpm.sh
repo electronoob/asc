@@ -39,4 +39,5 @@ echo
 echo xpm.js will need editing due to lack of string literals in themerc
 echo see commented block.
 echo
-
+echo List of Type Information:
+cat xpm.js | egrep -o "G_TYPE_\w+" | sort | uniq
