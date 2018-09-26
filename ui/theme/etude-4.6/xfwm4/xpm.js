@@ -1,3 +1,13 @@
+
+// G_TYPE_MAKE_FUNDAMENTAL
+const G_TYPE_BOOLEAN = 5;
+const G_TYPE_INT = 6;
+const G_TYPE_INVALID = 0;
+const G_TYPE_STRING = 16;
+const NULL = null;
+const TRUE = true;
+const FALSE = false;
+
 function xpm_template() {
 /*
 this.button_layout=O|HMC;

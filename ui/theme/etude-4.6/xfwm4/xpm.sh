@@ -25,8 +25,17 @@ List of decoration part names.
 | left-active         | left-inactive         |                   |                  |                         |                           |                           |                          |
 */
 '
-
-echo "function xpm_template() {" > xpm.js
+echo '
+// G_TYPE_MAKE_FUNDAMENTAL
+const G_TYPE_BOOLEAN = 5;
+const G_TYPE_INT = 6;
+const G_TYPE_INVALID = 0;
+const G_TYPE_STRING = 16;
+const NULL = null;
+const TRUE = true;
+const FALSE = false;
+' > xpm.js
+echo "function xpm_template() {" >> xpm.js
 echo "/*" >> xpm.js
 cat themerc  | sed -e 's/^#.*$//' | egrep "\w+" | awk '{print "this." $0 ";"}' >> xpm.js
 echo "*/" >> xpm.js
