@@ -21,7 +21,9 @@ this.inactive_text_color=#f9fbfe;
 this.shadow_delta_x=-4;
 this.shadow_delta_y=-4;
 */
-    this.settings_rc = [
+
+this.xpm = {};this.c = {};
+    this.c.settings = [
         /* Do not change the order of the following parameters */
         ["active_text_color", NULL, G_TYPE_STRING, FALSE],
         ["inactive_text_color", NULL, G_TYPE_STRING, FALSE],
@@ -129,7 +131,7 @@ this.shadow_delta_y=-4;
         ["zoom_desktop", NULL, G_TYPE_BOOLEAN, TRUE],
         [NULL, NULL, G_TYPE_INVALID, FALSE]
     ];
-this.bottom_active = [
+this.xpm.bottom_active = [
 "4 3 3 1",
 " 	c None",
 ".	c #EEEEEE",
@@ -137,14 +139,14 @@ this.bottom_active = [
 "....",
 "....",
 "++++"];
-this.bottom_active = [
+this.xpm.bottom_active = [
 "4 3 2 1",
 ".	c #F0F0F0",
 "+	c #9fb0ca",
 "....",
 "....",
 "++++"];
-this.bottom_left_active = [
+this.xpm.bottom_left_active = [
 "3 3 4 1",
 " 	c None",
 ".	c #6F88B1",
@@ -153,7 +155,7 @@ this.bottom_left_active = [
 ".++",
 " .+",
 "  ."];
-this.bottom_left_inactive = [
+this.xpm.bottom_left_inactive = [
 "3 3 4 1",
 " 	c None",
 ".	c #9FB0CA",
@@ -162,7 +164,7 @@ this.bottom_left_inactive = [
 ".++",
 " .+",
 "  ."];
-this.bottom_right_active = [
+this.xpm.bottom_right_active = [
 "3 3 4 1",
 " 	c None",
 ".	c #EEEEEE",
@@ -171,7 +173,7 @@ this.bottom_right_active = [
 "..+",
 ".+ ",
 "+  "];
-this.bottom_right_inactive = [
+this.xpm.bottom_right_inactive = [
 "3 3 4 1",
 " 	c None",
 ".	c #F0F0F0",
@@ -180,7 +182,7 @@ this.bottom_right_inactive = [
 "..+",
 ".+ ",
 "+  "];
-this.close_active = [
+this.xpm.close_active = [
 "16 16 11 1",
 " 	c None",
 ".	c #6980A7",
@@ -209,7 +211,7 @@ this.close_active = [
 "###$$$$$$$$$####",
 "################",
 "@@@@@@@@@@@@@@@@"];
-this.close_inactive = [
+this.xpm.close_inactive = [
 "16 16 6 1",
 " 	c None",
 ".	c #CED3DC",
@@ -233,7 +235,7 @@ this.close_inactive = [
 "...#########....",
 "################",
 "@@@@@@@@@@@@@@@@"];
-this.close_pressed = [
+this.xpm.close_pressed = [
 "16 16 12 1",
 " 	c None",
 ".	c #6980A7",
@@ -263,7 +265,7 @@ this.close_pressed = [
 "%%%&&&&&&&&&%%%%",
 "$$$$$$$$$$$$$$$$",
 "################"];
-this.hide_active = [
+this.xpm.hide_active = [
 "16 16 11 1",
 " 	c None",
 ".	c #6980A7",
@@ -292,7 +294,7 @@ this.hide_active = [
 "####$$$$$$$$$###",
 "################",
 "@@@@@@@@@@@@@@@@"];
-this.hide_inactive = [
+this.xpm.hide_inactive = [
 "16 16 6 1",
 " 	c None",
 ".	c #CED3DC",
@@ -316,7 +318,7 @@ this.hide_inactive = [
 "....#########...",
 "################",
 "@@@@@@@@@@@@@@@@"];
-this.hide_pressed = [
+this.xpm.hide_pressed = [
 "16 16 12 1",
 " 	c None",
 ".	c #6980A7",
@@ -346,7 +348,7 @@ this.hide_pressed = [
 "%%%%&&&&&&&&&%%%",
 "$$$$$$$$$$$$$$$$",
 "################"];
-this.left_active = [
+this.xpm.left_active = [
 "3 4 2 1",
 ".	c #6F88B1",
 "+	c #EEEEEE",
@@ -354,7 +356,7 @@ this.left_active = [
 ".++",
 ".++",
 ".++"];
-this.left_active = [
+this.xpm.left_active = [
 "3 4 2 1",
 ".	c #9fb0ca",
 "+	c #F0F0F0",
@@ -362,7 +364,7 @@ this.left_active = [
 ".++",
 ".++",
 ".++"];
-this.maximize_active = [
+this.xpm.maximize_active = [
 "16 16 11 1",
 " 	c None",
 ".	c #6980A7",
@@ -391,7 +393,7 @@ this.maximize_active = [
 "####$$$$$$$$$###",
 "################",
 "@@@@@@@@@@@@@@@@"];
-this.maximize_inactive = [
+this.xpm.maximize_inactive = [
 "16 16 6 1",
 " 	c None",
 ".	c #CED3DC",
@@ -415,7 +417,7 @@ this.maximize_inactive = [
 "....#########...",
 "################",
 "@@@@@@@@@@@@@@@@"];
-this.maximize_pressed = [
+this.xpm.maximize_pressed = [
 "16 16 12 1",
 " 	c None",
 ".	c #6980A7",
@@ -445,7 +447,7 @@ this.maximize_pressed = [
 "%%%%&&&&&&&&&%%%",
 "$$$$$$$$$$$$$$$$",
 "################"];
-this.maximize_toggled_active = [
+this.xpm.maximize_toggled_active = [
 "16 16 11 1",
 " 	c None",
 ".	c #6980A7",
@@ -474,7 +476,7 @@ this.maximize_toggled_active = [
 "####$$$$$$$$$###",
 "################",
 "@@@@@@@@@@@@@@@@"];
-this.maximize_toggled_inactive = [
+this.xpm.maximize_toggled_inactive = [
 "16 16 6 1",
 " 	c None",
 ".	c #CED3DC",
@@ -498,7 +500,7 @@ this.maximize_toggled_inactive = [
 "....#########...",
 "################",
 "@@@@@@@@@@@@@@@@"];
-this.maximize_toggled_pressed = [
+this.xpm.maximize_toggled_pressed = [
 "16 16 12 1",
 " 	c None",
 ".	c #6980A7",
@@ -528,7 +530,7 @@ this.maximize_toggled_pressed = [
 "%%%%&&&&&&&&&%%%",
 "$$$$$$$$$$$$$$$$",
 "################"];
-this.menu_active = [
+this.xpm.menu_active = [
 "16 16 11 1",
 " 	c None",
 ".	c #6980A7",
@@ -557,7 +559,7 @@ this.menu_active = [
 "####$$$$$$$$$###",
 "################",
 "@@@@@@@@@@@@@@@@"];
-this.menu_inactive = [
+this.xpm.menu_inactive = [
 "16 16 6 1",
 " 	c None",
 ".	c #CED3DC",
@@ -581,7 +583,7 @@ this.menu_inactive = [
 "....#########...",
 "################",
 "@@@@@@@@@@@@@@@@"];
-this.menu_pressed = [
+this.xpm.menu_pressed = [
 "16 16 11 1",
 " 	c None",
 ".	c #677FA7",
@@ -610,7 +612,7 @@ this.menu_pressed = [
 "%%%%&&&&&&&&&%%%",
 "$$$$$$$$$$$$$$$$",
 "################"];
-this.right_active = [
+this.xpm.right_active = [
 "3 4 2 1",
 ".	c #EEEEEE",
 "+	c #6F88B1",
@@ -618,7 +620,7 @@ this.right_active = [
 "..+",
 "..+",
 "..+"];
-this.right_active = [
+this.xpm.right_active = [
 "3 4 2 1",
 ".	c #F0F0F0",
 "+	c #9fb0ca",
@@ -626,7 +628,7 @@ this.right_active = [
 "..+",
 "..+",
 "..+"];
-this.title_active = [
+this.xpm.title_active = [
 "4 22 10 1",
 " 	c None",
 ".	c #6F88B1",
@@ -660,7 +662,7 @@ this.title_active = [
 "####",
 "####",
 "@@@@"];
-this.title_inactive = [
+this.xpm.title_inactive = [
 "3 22 6 1",
 ".	c #A0B2CA",
 "+	c #F0F0F0",
@@ -690,7 +692,7 @@ this.title_inactive = [
 "$$$",
 "###",
 "@@@"];
-this.title_active = [
+this.xpm.title_active = [
 "4 22 10 1",
 " 	c None",
 ".	c #6F88B1",
@@ -724,7 +726,7 @@ this.title_active = [
 "####",
 "####",
 "@@@@"];
-this.title_inactive = [
+this.xpm.title_inactive = [
 "3 22 6 1",
 ".	c #A0B2CA",
 "+	c #F0F0F0",
@@ -754,7 +756,7 @@ this.title_inactive = [
 "$$$",
 "###",
 "@@@"];
-this.title_active = [
+this.xpm.title_active = [
 "4 22 10 1",
 " 	c None",
 ".	c #6F88B1",
@@ -788,7 +790,7 @@ this.title_active = [
 "####",
 "####",
 "@@@@"];
-this.title_inactive = [
+this.xpm.title_inactive = [
 "3 22 6 1",
 ".	c #A0B2CA",
 "+	c #F0F0F0",
@@ -818,7 +820,7 @@ this.title_inactive = [
 "$$$",
 "###",
 "@@@"];
-this.title_active = [
+this.xpm.title_active = [
 "4 22 10 1",
 " 	c None",
 ".	c #6F88B1",
@@ -852,7 +854,7 @@ this.title_active = [
 "####",
 "####",
 "@@@@"];
-this.title_inactive = [
+this.xpm.title_inactive = [
 "3 22 6 1",
 ".	c #A0B2CA",
 "+	c #F0F0F0",
@@ -882,7 +884,7 @@ this.title_inactive = [
 "$$$",
 "###",
 "@@@"];
-this.title_active = [
+this.xpm.title_active = [
 "4 22 10 1",
 " 	c None",
 ".	c #6F88B1",
@@ -916,7 +918,7 @@ this.title_active = [
 "####",
 "####",
 "@@@@"];
-this.title_inactive = [
+this.xpm.title_inactive = [
 "3 22 6 1",
 ".	c #A0B2CA",
 "+	c #F0F0F0",
@@ -946,7 +948,7 @@ this.title_inactive = [
 "$$$",
 "###",
 "@@@"];
-this.top_left_active = [
+this.xpm.top_left_active = [
 "4 22 5 1",
 " 	c None",
 ".	c #6F88B1",
@@ -975,7 +977,7 @@ this.top_left_active = [
 ".++#",
 ".++#",
 ".++@"];
-this.top_left_inactive = [
+this.xpm.top_left_inactive = [
 "4 22 5 1",
 " 	c None",
 ".	c #A0B2CA",
@@ -1004,7 +1006,7 @@ this.top_left_inactive = [
 ".++#",
 ".++#",
 ".++@"];
-this.top_right_active = [
+this.xpm.top_right_active = [
 "4 22 5 1",
 " 	c None",
 ".	c #6F88B1",
@@ -1033,7 +1035,7 @@ this.top_right_active = [
 "#++.",
 "#++.",
 "@++."];
-this.top_right_inactive = [
+this.xpm.top_right_inactive = [
 "4 22 5 1",
 " 	c None",
 ".	c #A0B2CA",
@@ -1063,3 +1065,28 @@ this.top_right_inactive = [
 "#++.",
 "@++."];
 }
+
+
+/*
+List of decoration part names.
+
+| menu-active         | menu-inactive         | menu-prelight     | menu-pressed     |                         |                           |                           |                          |
+| shade-active        | shade-inactive        | shade-prelight    | shade-pressed    | shade-toggled-active    | shade-toggled-inactive    | shade-toggled-prelight    | shade-toggled-pressed    |
+| stick-active        | stick-inactive        | stick-prelight    | stick-pressed    | stick-toggled-active    | stick-toggled-inactive    | stick-toggled-prelight    | stick-toggled-pressed    |
+| hide-active         | hide-inactive         | hide-prelight     | hide-pressed     |                         |                           |                           |                          |
+| maximize-active     | maximize-inactive     | maximize-prelight | maximize-pressed | maximize-toggled-active | maximize-toggled-inactive | maximize-toggled-prelight | maximize-toggled-pressed |
+| close-active        | close-inactive        | close-prelight    | close-pressed    |                         |                           |                           |                          |
+| top-left-active     | top-left-inactive     |                   |                  |                         |                           |                           |                          |
+| title-1-active      | title-1-inactive      |                   |                  |                         |                           |                           |                          |
+| title-2-active      | title-2-inactive      |                   |                  |                         |                           |                           |                          |
+| title-3-active      | title-3-inactive      |                   |                  |                         |                           |                           |                          |
+| title-4-active      | title-4-inactive      |                   |                  |                         |                           |                           |                          |
+| title-5-active      | title-5-inactive      |                   |                  |                         |                           |                           |                          |
+| top-right-active    | top-right-inactive    |                   |                  |                         |                           |                           |                          |
+| right-active        | right-inactive        |                   |                  |                         |                           |                           |                          |
+| bottom-right-active | bottom-right-inactive |                   |                  |                         |                           |                           |                          |
+| bottom-active       | bottom-inactive       |                   |                  |                         |                           |                           |                          |
+| bottom-left-active  | bottom-left-inactive  |                   |                  |                         |                           |                           |                          |
+| left-active         | left-inactive         |                   |                  |                         |                           |                           |                          |
+*/
+

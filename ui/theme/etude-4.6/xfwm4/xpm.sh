@@ -1,6 +1,26 @@
 #!/bin/bash
 
-: '
+echo '
+// G_TYPE_MAKE_FUNDAMENTAL
+const G_TYPE_BOOLEAN = 5;
+const G_TYPE_INT = 6;
+const G_TYPE_INVALID = 0;
+const G_TYPE_STRING = 16;
+const NULL = null;
+const TRUE = true;
+const FALSE = false;
+' > xpm.js
+echo "function xpm_template() {" >> xpm.js
+echo "/*" >> xpm.js
+cat themerc  | sed -e 's/^#.*$//' | egrep "\w+" | awk '{print "this." $0 ";"}' >> xpm.js
+echo "*/" >> xpm.js
+echo "">>xpm.js
+echo "this.xpm = {};this.c = {};" >> xpm.js
+awk "/Settings rc\[\] = {/,/};/"  ../../settings.c | sed "s/[[]]//" | sed "s/Settings rc/this.c.settings/" | sed "s/{/[/" | sed "s/}/]/" >> xpm.js
+cat *.xpm | grep -v "* XPM *"|  sed 's\static char [*] \this.xpm.\' | sed 's\[[]]\\' | sed 's\{\[\' |  sed 's\}\]\' | sed 's/_xpm//' >> xpm.js
+echo "}" >> xpm.js
+
+echo '
 
 /*
 List of decoration part names.
@@ -24,24 +44,9 @@ List of decoration part names.
 | bottom-left-active  | bottom-left-inactive  |                   |                  |                         |                           |                           |                          |
 | left-active         | left-inactive         |                   |                  |                         |                           |                           |                          |
 */
-'
-echo '
-// G_TYPE_MAKE_FUNDAMENTAL
-const G_TYPE_BOOLEAN = 5;
-const G_TYPE_INT = 6;
-const G_TYPE_INVALID = 0;
-const G_TYPE_STRING = 16;
-const NULL = null;
-const TRUE = true;
-const FALSE = false;
-' > xpm.js
-echo "function xpm_template() {" >> xpm.js
-echo "/*" >> xpm.js
-cat themerc  | sed -e 's/^#.*$//' | egrep "\w+" | awk '{print "this." $0 ";"}' >> xpm.js
-echo "*/" >> xpm.js
-awk "/Settings rc\[\] = {/,/};/"  ../../settings.c | sed "s/[[]]//" | sed "s/Settings rc/this.settings_rc/" | sed "s/{/[/" | sed "s/}/]/" >> xpm.js
-cat *.xpm | grep -v "* XPM *"|  sed 's\static char [*] \this.\' | sed 's\[[]]\\' | sed 's\{\[\' |  sed 's\}\]\' | sed 's/_xpm//' >> xpm.js
-echo "}" >> xpm.js
+'>>xpm.js
+
+
 /home/e/downloads/node-v8.12.0-linux-x64/bin/node xpm.js
 echo
 echo
