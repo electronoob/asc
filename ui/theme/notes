@@ -1,3 +1,5 @@
  cat *.xpm | grep -v "* XPM *"|  sed 's\static char [*] \this.\' | sed 's\[[]]\\' | sed 's\{\[\' |  sed 's\}\]\' > xpm.js
 
+ https://raw.githubusercontent.com/GalliumOS/xfwm4/60b5b6f221f09a54b6830f464814a9baf93a1660/src/settings.c
+
 
