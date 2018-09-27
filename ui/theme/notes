@@ -4,3 +4,9 @@
 
 https://developer.gnome.org/gobject/stable/gobject-Type-Information.html
 
+it's become obvious that themes dont necessarily have an xpm file declaration that matches the filename.
+such a ballache.
+
+
+<xiando> title-3-active.xpm
+<xiando> I'm sure by the magic method of changing 1,2 and then 3 until the middle changed :)

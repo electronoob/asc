@@ -1,5 +1,5 @@
 /* XPM */
-static char * title_active_xpm[] = {
+static char * title_1_active_xpm[] = {
 "4 22 10 1",
 " 	c None",
 ".	c #6F88B1",

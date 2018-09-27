@@ -628,7 +628,7 @@ this.xpm.right_active = [
 "..+",
 "..+",
 "..+"];
-this.xpm.title_active = [
+this.xpm.title_1_active = [
 "4 22 10 1",
 " 	c None",
 ".	c #6F88B1",
@@ -662,7 +662,7 @@ this.xpm.title_active = [
 "####",
 "####",
 "@@@@"];
-this.xpm.title_inactive = [
+this.xpm.title_1_inactive = [
 "3 22 6 1",
 ".	c #A0B2CA",
 "+	c #F0F0F0",
@@ -692,7 +692,7 @@ this.xpm.title_inactive = [
 "$$$",
 "###",
 "@@@"];
-this.xpm.title_active = [
+this.xpm.title_2_active = [
 "4 22 10 1",
 " 	c None",
 ".	c #6F88B1",
@@ -726,7 +726,7 @@ this.xpm.title_active = [
 "####",
 "####",
 "@@@@"];
-this.xpm.title_inactive = [
+this.xpm.title_2_inactive = [
 "3 22 6 1",
 ".	c #A0B2CA",
 "+	c #F0F0F0",
@@ -756,7 +756,7 @@ this.xpm.title_inactive = [
 "$$$",
 "###",
 "@@@"];
-this.xpm.title_active = [
+this.xpm.title_3_active = [
 "4 22 10 1",
 " 	c None",
 ".	c #6F88B1",
@@ -790,7 +790,7 @@ this.xpm.title_active = [
 "####",
 "####",
 "@@@@"];
-this.xpm.title_inactive = [
+this.xpm.title_3_inactive = [
 "3 22 6 1",
 ".	c #A0B2CA",
 "+	c #F0F0F0",
@@ -820,7 +820,7 @@ this.xpm.title_inactive = [
 "$$$",
 "###",
 "@@@"];
-this.xpm.title_active = [
+this.xpm.title_4_active = [
 "4 22 10 1",
 " 	c None",
 ".	c #6F88B1",
@@ -854,7 +854,7 @@ this.xpm.title_active = [
 "####",
 "####",
 "@@@@"];
-this.xpm.title_inactive = [
+this.xpm.title_4_inactive = [
 "3 22 6 1",
 ".	c #A0B2CA",
 "+	c #F0F0F0",
@@ -884,7 +884,7 @@ this.xpm.title_inactive = [
 "$$$",
 "###",
 "@@@"];
-this.xpm.title_active = [
+this.xpm.title_5_active = [
 "4 22 10 1",
 " 	c None",
 ".	c #6F88B1",
@@ -918,7 +918,7 @@ this.xpm.title_active = [
 "####",
 "####",
 "@@@@"];
-this.xpm.title_inactive = [
+this.xpm.title_5_inactive = [
 "3 22 6 1",
 ".	c #A0B2CA",
 "+	c #F0F0F0",
