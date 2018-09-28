@@ -1,0 +1,9 @@
+Installation
+=============
+
+1) Extract main .tar.gz archive
+
+2) Copy folder of your desired theme color to the .themes folder (it's a hidden
+   folder in your home directory). If there isn't any .themes folder in your 
+   home directory then create it.
+
