@@ -1,25 +1,4 @@
-<style>
-body {
-background-color: #003100;
-}
-div.overlay{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left:0;
-    filter: blur(3px);
-    z-index: 1;
-    background: url(https://raw.githubusercontent.com/electronoob/tower-defence/master/src/img/green.png);
-    box-shadow: 0 0 200px rgba(0,0,0,0.9) inset;
-}
-canvas {z-index: 10;position: relative;}
-</style>
-<div class=overlay></div>
 
-<canvas id=display width=500 height=250></canvas>
-
-<script>
 // G_TYPE_MAKE_FUNDAMENTAL
 const G_TYPE_BOOLEAN = 5;
 const G_TYPE_INT = 6;
@@ -29,128 +8,127 @@ const NULL = null;
 const TRUE = true;
 const FALSE = false;
 
-function xpm_template()
-{
-  this.button_offset=1;
-  this.button_spacing=1;
-  this.full_width_title=true;
-  this.title_horizontal_offset=2;
-  this.title_vertical_offset_active=3;
-  this.title_vertical_offset_inactive=3;
-  this.title_shadow_active=false;
-  this.title_shadow_inactive=false;
-   this.xpm = {};
-   this.c = {};
-   this.img = {};
-   this.c.settings = [
-      /* Do not change the order of the following parameters */
-      ["active_text_color", NULL, G_TYPE_STRING, FALSE],
-      ["inactive_text_color", NULL, G_TYPE_STRING, FALSE],
-      ["active_text_shadow_color", NULL, G_TYPE_STRING, FALSE],
-      ["inactive_text_shadow_color", NULL, G_TYPE_STRING, FALSE],
-      ["active_border_color", NULL, G_TYPE_STRING, FALSE],
-      ["inactive_border_color", NULL, G_TYPE_STRING, FALSE],
-      ["active_color_1", NULL, G_TYPE_STRING, FALSE],
-      ["active_hilight_1", NULL, G_TYPE_STRING, FALSE],
-      ["active_shadow_1", NULL, G_TYPE_STRING, FALSE],
-      ["active_mid_1", NULL, G_TYPE_STRING, FALSE],
-      ["active_text_color_2", NULL, G_TYPE_STRING, FALSE],
-      ["active_color_2", NULL, G_TYPE_STRING, FALSE],
-      ["active_hilight_2", NULL, G_TYPE_STRING, FALSE],
-      ["active_shadow_2", NULL, G_TYPE_STRING, FALSE],
-      ["active_mid_2", NULL, G_TYPE_STRING, FALSE],
-      ["inactive_color_1", NULL, G_TYPE_STRING, FALSE],
-      ["inactive_hilight_1", NULL, G_TYPE_STRING, FALSE],
-      ["inactive_shadow_1", NULL, G_TYPE_STRING, FALSE],
-      ["inactive_mid_1", NULL, G_TYPE_STRING, FALSE],
-      ["inactive_text_color_2", NULL, G_TYPE_STRING, FALSE],
-      ["inactive_color_2", NULL, G_TYPE_STRING, FALSE],
-      ["inactive_hilight_2", NULL, G_TYPE_STRING, FALSE],
-      ["inactive_shadow_2", NULL, G_TYPE_STRING, FALSE],
-      ["inactive_mid_2", NULL, G_TYPE_STRING, FALSE],
-      /* You can change the order of the following parameters */
-      ["activate_action", NULL, G_TYPE_STRING, TRUE],
-      ["borderless_maximize", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["box_move", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["box_resize", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["button_layout", NULL, G_TYPE_STRING, TRUE],
-      ["button_offset", NULL, G_TYPE_INT, TRUE],
-      ["button_spacing", NULL, G_TYPE_INT, TRUE],
-      ["click_to_focus", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["cycle_apps_only", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["cycle_draw_frame", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["cycle_hidden", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["cycle_minimum", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["cycle_preview", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["cycle_tabwin_mode", NULL, G_TYPE_INT, FALSE],
-      ["cycle_workspaces", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["double_click_action", NULL, G_TYPE_STRING, TRUE],
-      ["double_click_distance", NULL, G_TYPE_INT, TRUE],
-      ["double_click_time", NULL, G_TYPE_INT, TRUE],
-      ["easy_click", NULL, G_TYPE_STRING, TRUE],
-      ["focus_delay", NULL, G_TYPE_INT, TRUE],
-      ["focus_hint", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["focus_new", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["frame_opacity", NULL, G_TYPE_INT, TRUE],
-      ["full_width_title", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["horiz_scroll_opacity", NULL, G_TYPE_BOOLEAN, FALSE],
-      ["inactive_opacity", NULL, G_TYPE_INT, TRUE],
-      ["margin_bottom", NULL, G_TYPE_INT, FALSE],
-      ["margin_left", NULL, G_TYPE_INT, FALSE],
-      ["margin_right", NULL, G_TYPE_INT, FALSE],
-      ["margin_top", NULL, G_TYPE_INT, FALSE],
-      ["maximized_offset", NULL, G_TYPE_INT, TRUE],
-      ["mousewheel_rollup", NULL, G_TYPE_BOOLEAN, FALSE],
-      ["move_opacity", NULL, G_TYPE_INT, TRUE],
-      ["placement_mode", NULL, G_TYPE_STRING, TRUE],
-      ["placement_ratio", NULL, G_TYPE_INT, TRUE],
-      ["popup_opacity", NULL, G_TYPE_INT, TRUE],
-      ["prevent_focus_stealing", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["raise_delay", NULL, G_TYPE_INT, TRUE],
-      ["raise_on_click", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["raise_on_focus", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["raise_with_any_button", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["repeat_urgent_blink", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["resize_opacity", NULL, G_TYPE_INT, TRUE],
-      ["scroll_workspaces", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["shadow_delta_height", NULL, G_TYPE_INT, TRUE],
-      ["shadow_delta_width", NULL, G_TYPE_INT, TRUE],
-      ["shadow_delta_x", NULL, G_TYPE_INT, TRUE],
-      ["shadow_delta_y", NULL, G_TYPE_INT, TRUE],
-      ["shadow_opacity", NULL, G_TYPE_INT, TRUE],
-      ["show_app_icon", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["show_dock_shadow", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["show_frame_shadow", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["show_popup_shadow", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["snap_resist", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["snap_to_border", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["snap_to_windows", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["snap_width", NULL, G_TYPE_INT, TRUE],
-      ["sync_to_vblank", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["theme", NULL, G_TYPE_STRING, TRUE],
-      ["tile_on_move", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["title_alignment", NULL, G_TYPE_STRING, TRUE],
-      ["title_font", NULL, G_TYPE_STRING, FALSE],
-      ["title_horizontal_offset", NULL, G_TYPE_INT, TRUE],
-      ["titleless_maximize", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["title_shadow_active", NULL, G_TYPE_STRING, TRUE],
-      ["title_shadow_inactive", NULL, G_TYPE_STRING, TRUE],
-      ["title_vertical_offset_active", NULL, G_TYPE_INT, TRUE],
-      ["title_vertical_offset_inactive", NULL, G_TYPE_INT, TRUE],
-      ["toggle_workspaces", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["unredirect_overlays", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["urgent_blink", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["use_compositing", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["workspace_count", NULL, G_TYPE_INT, TRUE],
-      ["wrap_cycle", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["wrap_layout", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["wrap_resistance", NULL, G_TYPE_INT, TRUE],
-      ["wrap_windows", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["wrap_workspaces", NULL, G_TYPE_BOOLEAN, TRUE],
-      ["zoom_desktop", NULL, G_TYPE_BOOLEAN, TRUE],
-      [NULL, NULL, G_TYPE_INVALID, FALSE]
-   ];
+function xpm_template() {
+/*
+this.button_offset=1;
+this.button_spacing=1;
+this.full_width_title=true;
+this.title_horizontal_offset=2;
+this.title_vertical_offset_active=3;
+this.title_vertical_offset_inactive=3;
+this.title_shadow_active=false;
+this.title_shadow_inactive=false;
+*/
 
+this.xpm = {};this.c = {};
+    this.c.settings = [
+        /* Do not change the order of the following parameters */
+        ["active_text_color", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_text_color", NULL, G_TYPE_STRING, FALSE],
+        ["active_text_shadow_color", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_text_shadow_color", NULL, G_TYPE_STRING, FALSE],
+        ["active_border_color", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_border_color", NULL, G_TYPE_STRING, FALSE],
+        ["active_color_1", NULL, G_TYPE_STRING, FALSE],
+        ["active_hilight_1", NULL, G_TYPE_STRING, FALSE],
+        ["active_shadow_1", NULL, G_TYPE_STRING, FALSE],
+        ["active_mid_1", NULL, G_TYPE_STRING, FALSE],
+        ["active_text_color_2", NULL, G_TYPE_STRING, FALSE],
+        ["active_color_2", NULL, G_TYPE_STRING, FALSE],
+        ["active_hilight_2", NULL, G_TYPE_STRING, FALSE],
+        ["active_shadow_2", NULL, G_TYPE_STRING, FALSE],
+        ["active_mid_2", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_color_1", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_hilight_1", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_shadow_1", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_mid_1", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_text_color_2", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_color_2", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_hilight_2", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_shadow_2", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_mid_2", NULL, G_TYPE_STRING, FALSE],
+        /* You can change the order of the following parameters */
+        ["activate_action", NULL, G_TYPE_STRING, TRUE],
+        ["borderless_maximize", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["box_move", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["box_resize", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["button_layout", NULL, G_TYPE_STRING, TRUE],
+        ["button_offset", NULL, G_TYPE_INT, TRUE],
+        ["button_spacing", NULL, G_TYPE_INT, TRUE],
+        ["click_to_focus", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["cycle_apps_only", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["cycle_draw_frame", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["cycle_hidden", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["cycle_minimum", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["cycle_preview", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["cycle_tabwin_mode", NULL, G_TYPE_INT, FALSE],
+        ["cycle_workspaces", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["double_click_action", NULL, G_TYPE_STRING, TRUE],
+        ["double_click_distance", NULL, G_TYPE_INT, TRUE],
+        ["double_click_time", NULL, G_TYPE_INT, TRUE],
+        ["easy_click", NULL, G_TYPE_STRING, TRUE],
+        ["focus_delay", NULL, G_TYPE_INT, TRUE],
+        ["focus_hint", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["focus_new", NULL, G_TYPE_BOOLEAN,TRUE],
+        ["frame_opacity", NULL, G_TYPE_INT, TRUE],
+        ["full_width_title", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["horiz_scroll_opacity", NULL, G_TYPE_BOOLEAN, FALSE],
+        ["inactive_opacity", NULL, G_TYPE_INT, TRUE],
+        ["margin_bottom", NULL, G_TYPE_INT, FALSE],
+        ["margin_left", NULL, G_TYPE_INT, FALSE],
+        ["margin_right", NULL, G_TYPE_INT, FALSE],
+        ["margin_top", NULL, G_TYPE_INT, FALSE],
+        ["maximized_offset", NULL, G_TYPE_INT, TRUE],
+        ["mousewheel_rollup", NULL, G_TYPE_BOOLEAN, FALSE],
+        ["move_opacity", NULL, G_TYPE_INT, TRUE],
+        ["placement_mode", NULL, G_TYPE_STRING, TRUE],
+        ["placement_ratio", NULL, G_TYPE_INT, TRUE],
+        ["popup_opacity", NULL, G_TYPE_INT, TRUE],
+        ["prevent_focus_stealing", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["raise_delay", NULL, G_TYPE_INT, TRUE],
+        ["raise_on_click", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["raise_on_focus", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["raise_with_any_button", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["repeat_urgent_blink", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["resize_opacity", NULL, G_TYPE_INT, TRUE],
+        ["scroll_workspaces", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["shadow_delta_height", NULL, G_TYPE_INT, TRUE],
+        ["shadow_delta_width", NULL, G_TYPE_INT, TRUE],
+        ["shadow_delta_x", NULL, G_TYPE_INT, TRUE],
+        ["shadow_delta_y", NULL, G_TYPE_INT, TRUE],
+        ["shadow_opacity", NULL, G_TYPE_INT, TRUE],
+        ["show_app_icon", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["show_dock_shadow", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["show_frame_shadow", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["show_popup_shadow", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["snap_resist", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["snap_to_border", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["snap_to_windows", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["snap_width", NULL, G_TYPE_INT, TRUE],
+        ["sync_to_vblank", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["theme", NULL, G_TYPE_STRING, TRUE],
+        ["tile_on_move", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["title_alignment", NULL, G_TYPE_STRING, TRUE],
+        ["title_font", NULL, G_TYPE_STRING, FALSE],
+        ["title_horizontal_offset", NULL, G_TYPE_INT, TRUE],
+        ["titleless_maximize", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["title_shadow_active", NULL, G_TYPE_STRING, TRUE],
+        ["title_shadow_inactive", NULL, G_TYPE_STRING, TRUE],
+        ["title_vertical_offset_active", NULL, G_TYPE_INT, TRUE],
+        ["title_vertical_offset_inactive", NULL, G_TYPE_INT, TRUE],
+        ["toggle_workspaces", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["unredirect_overlays", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["urgent_blink", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["use_compositing", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["workspace_count", NULL, G_TYPE_INT, TRUE],
+        ["wrap_cycle", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["wrap_layout", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["wrap_resistance", NULL, G_TYPE_INT, TRUE],
+        ["wrap_windows", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["wrap_workspaces", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["zoom_desktop", NULL, G_TYPE_BOOLEAN, TRUE],
+        [NULL, NULL, G_TYPE_INVALID, FALSE]
+    ];
 this.xpm.bottom_active = [
 "32 5 4 1",
 " 	c None",
@@ -1572,138 +1550,28 @@ this.xpm.top_right_inactive = [
 "######$@",
 "######$@",
 "+++++++@"];
-
 }
 
 var theme = new xpm_template();
-var ctx = display.getContext("2d");
-convert_xpm_to_canvas();
 
-/*
-var dialog = {
-		structure: {
-    	top:['top_left','title_1','title_2','title_3','title_4','title_5'],
-      middle:['left', 'right'],
-      bottom:['bottom_left', 'bottom', 'bottom_right']
-    }
-};
-*/
+Object.keys(theme.xpm).forEach(function (element){
+        let xpm = get_xpm_data(element);
+        let ctable = get_xpm_colortable(xpm.ctable, 1);
+        console.log(element, xpm.width, xpm.height, xpm.colors, xpm.cpp);
+});
 
-var fake = {
-  width: 300,
-  height: 100,
-  x: 20,
-  y: 40,
-	mode: "active",
-  active: {},
-  inactive: {}
-};
-var modes = ['active','inactive'];
-for (var mode of modes) {
-  let i = 0, xoffset = 0, img = {}, yoffset = 0; 
-  fake[mode].canvas = document.createElement('canvas');
-  fake[mode].canvas.width = fake.width;
-  fake[mode].canvas.height = fake.height;
-  fake[mode].canvas.ctx = fake[mode].canvas.getContext("2d");
-  fake[mode].canvas.ctx.fillStyle = '#000';
-  fake[mode].canvas.ctx.fillRect(0,0,500,250);
-  
-  img = theme.img['title_5_'+mode];
-  xoffset = theme.img['top_left_'+mode].width;
-	for(i=xoffset;i<=fake.width-theme.img['top_left_'+mode].width-theme.img['top_right_'+mode].width;i+=img.width) {
-  	fake[mode].canvas.ctx.drawImage(img.canvas, xoffset, 0);
-		xoffset+=img.width;
-  }
-
-  img = theme.img['bottom_'+mode];
-  yoffset = fake.height - img.height;
-  xoffset = theme.img['top_left_'+mode].width;
-	for(i=xoffset;i<=fake.width-theme.img['top_left_'+mode].width-theme.img['top_right_'+mode].width;i+=img.width) {
-  	fake[mode].canvas.ctx.drawImage(img.canvas, xoffset, yoffset);
-		xoffset+=img.width;
-  }
- 
- 
-  img = theme.img['left_'+mode];
-  yoffset = theme.img['top_left_'+mode].height;
-	for(i=0;i<fake.height-theme.img['top_left_'+mode].height-theme.img['bottom_left_'+mode].height;i+=img.height) {
-  	fake[mode].canvas.ctx.drawImage(img.canvas, 0, yoffset);
-		yoffset+=img.height;
-  }
-  
-  img = theme.img['right_'+mode];
-  yoffset = theme.img['top_right_'+mode].height;
-	for(i=0;i<fake.height-theme.img['top_right_'+mode].height-theme.img['bottom_right_'+mode].height;i+=img.height) {
-  	fake[mode].canvas.ctx.drawImage(img.canvas, fake.width - img.width, yoffset);
-		yoffset+=img.height;
-  }
-  
-  
-  xoffset = 0;
-  img = theme.img['top_left_'+mode];
-  fake[mode].canvas.ctx.drawImage(img.canvas, 0,0);
-  xoffset+=img.width;
-  for(i=1;i<=5;i++) {
-    img = theme.img['title_'+i+'_'+mode];
-  	fake[mode].canvas.ctx.drawImage(img.canvas, xoffset, 0);
-		xoffset+=img.width;
-  }
-  img = theme.img['top_right_'+mode];
-  xoffset = fake.width - img.width;
-  fake[mode].canvas.ctx.drawImage(img.canvas, xoffset,0);
-  xoffset-=img.width;
-  for(i=5;i>=1;i--) {
-    img = theme.img['title_'+i+'_'+mode];
-  	fake[mode].canvas.ctx.drawImage(img.canvas, xoffset, 0);
-		xoffset-=img.width;
-  }
-  
-  img = theme.img['bottom_left_'+mode];
-  fake[mode].canvas.ctx.drawImage(img.canvas, 0,fake.height-img.height);
-  img = theme.img['bottom_right_'+mode];
-  fake[mode].canvas.ctx.drawImage(img.canvas, fake.width - img.width,fake.height-img.height);
-}
-
-ctx.drawImage(fake.active.canvas,30,30);
-ctx.drawImage(fake.inactive.canvas,30,fake.height + 40);
-
-function convert_xpm_to_canvas() {
-      Object.keys(theme.xpm).forEach(function (element){
-              let xpm = get_xpm_data(element);
-              let colors = get_xpm_colortable(xpm.ctable)['table'];
-              let x = 0;
-              let y = 0;
-              //ctx.clearRect(0,0,500,250);
-              theme.img[element] = {canvas: document.createElement('canvas'), width: xpm.width, height: xpm.height};
-              theme.img[element].canvas.id = element;
-              theme.img[element].canvas.width = xpm.width;
-              theme.img[element].canvas.height = xpm.height;
-              theme.img[element].canvas.ctx = theme.img[element].canvas.getContext("2d");
-              for(x=0;x<xpm.width;x++) {
-                  for(y=0;y<xpm.height;y++) {
-                      /* assuming 1 character per pixel for now */
-                      let symbol = xpm.pixels[y][x];
-                      if(colors[symbol]=='None') {
-                        theme.img[element].canvas.ctx.fillStyle = 'rgba(0,0,0,0)';
-                      } else {
-                        theme.img[element].canvas.ctx.fillStyle = colors[symbol];
-                      }
-                      theme.img[element].canvas.ctx.fillRect(x, y, 1, 1);
-                  }
-              }
-      });
-}
 // returns width, height obj
-function get_xpm_data(file) {
-	let row = theme.xpm[file][0].split(" ");
+function get_xpm_data(data) {
+  let row = theme.xpm[data][0].split(" ");
   let width = parseInt(row[0]);
   let height = parseInt(row[1]);
   let colors = parseInt(row[2]);
   let cpp = parseInt(row[3])
-  let ctable = theme.xpm[file].slice(1,colors+1);
-  let pixels = theme.xpm[file].slice(colors+1);
+  let ctable = theme.xpm[data].slice(1,colors+1);
+  let pixels = theme.xpm[data].slice(colors+1);
   return {width: width, height: height, colors: colors, cpp: cpp, ctable: ctable, pixels:pixels};
 }
+
 function get_xpm_colortable(ctable, cpp) {
     let generated_table = [];
     let i = 0;
@@ -1716,7 +1584,7 @@ function get_xpm_colortable(ctable, cpp) {
       let color_block = entry.substr(1).match(/\w+/gm);
       let k = 0;
       for(k=0;k<color_block.length;k+=2) {
-        /*only interested in the 'c' color stuff atm*/
+        /*only interested in the c color stuff atm*/
           if (color_block[k] == "c") {
             generated_table[symbol] = color_block[k+1];
           }
@@ -1725,14 +1593,11 @@ function get_xpm_colortable(ctable, cpp) {
       return {length: i, table: generated_table};
   }
 
+
+
+
+
 /*
-The c means "color", it's possible to add m for "monochrome" output, g for "grayscale", and s for "symbolic", explaining what a defined color is supposed to do.
-
-"&      c #B4BAB4 s active_mid_2",
-
-
-
-
 List of decoration part names.
 
 | menu-active         | menu-inactive         | menu-prelight     | menu-pressed     |                         |                           |                           |                          |
@@ -1754,4 +1619,4 @@ List of decoration part names.
 | bottom-left-active  | bottom-left-inactive  |                   |                  |                         |                           |                           |                          |
 | left-active         | left-inactive         |                   |                  |                         |                           |                           |                          |
 */
-</script>
+
