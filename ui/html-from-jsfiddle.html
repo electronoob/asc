@@ -1,6 +1,7 @@
 <style>
 body {
   background-color: #acb4c1;
+  user-select: none;
 }
 div.overlay{
     width: 100%;
@@ -18,7 +19,6 @@ div.content {
 <div class=overlay></div>
 <div id="window_1" class="window">
   <div id="content_1" class="content">
-    <input type="text" value="cocks">
   </div>
 </div>
 <script>
@@ -1750,12 +1750,68 @@ this.xpm.top_right_inactive = [
 "+++++++.",
 ".++++++."];
 
-
+this.convert_xpm_to_canvas = function () {
+      Object.keys(this.xpm).forEach(function (element){
+              let xpm = this.get_xpm_data(element);
+              let colors = this.get_xpm_colortable(xpm.ctable)['table'];
+              let x = 0;
+              let y = 0;
+              //ctx.clearRect(0,0,500,250);
+              this.img[element] = {canvas: document.createElement('canvas'), width: xpm.width, height: xpm.height};
+              this.img[element].canvas.id = element;
+              this.img[element].canvas.width = xpm.width;
+              this.img[element].canvas.height = xpm.height;
+              this.img[element].canvas.ctx = this.img[element].canvas.getContext("2d");
+              for(x=0;x<xpm.width;x++) {
+                  for(y=0;y<xpm.height;y++) {
+                      /* assuming 1 character per pixel for now */
+                      let symbol = xpm.pixels[y][x];
+                      if(colors[symbol]=='None') {
+                        this.img[element].canvas.ctx.fillStyle = 'rgba(0,0,0,0)';
+                      } else {
+                        this.img[element].canvas.ctx.fillStyle = '#'+colors[symbol];
+                      }
+                      this.img[element].canvas.ctx.fillRect(x, y, 1, 1);
+                  }
+              }
+      }.bind(this));
+};
+// returns width, height obj
+this.get_xpm_data = function (file) {
+	let row = this.xpm[file][0].split(" ");
+  let width = parseInt(row[0]);
+  let height = parseInt(row[1]);
+  let colors = parseInt(row[2]);
+  let cpp = parseInt(row[3])
+  let ctable = this.xpm[file].slice(1,colors+1);
+  let pixels = this.xpm[file].slice(colors+1);
+  return {width: width, height: height, colors: colors, cpp: cpp, ctable: ctable, pixels:pixels};
+};
+this.get_xpm_colortable= function (ctable, cpp) {
+    let generated_table = [];
+    let i = 0;
+    for(i=0;i<ctable.length;i++) {
+      //assumes 1cpp
+      let entry = ctable[i];
+      let symbol = entry[0];
+      //let color_block = tabs[1];
+      //color_block = color_block.split(" ");
+      let color_block = entry.substr(1).match(/\w+/gm);
+      let k = 0;
+      for(k=0;k<color_block.length;k+=2) {
+        /*only interested in the 'c' color stuff atm*/
+          if (color_block[k] == "c") {
+            generated_table[symbol] = color_block[k+1];
+          }
+      }
+    }
+      return {length: i, table: generated_table};
+  };
 
 }
 
 var theme = new xpm_template();
-convert_xpm_to_canvas();
+theme.convert_xpm_to_canvas();
 
 /*
 var dialog = {
@@ -1908,95 +1964,29 @@ for (var mode of modes) {
   c1.style.top = fake.origin.y + "px";
   c1.style.left = fake.origin.x + "px";
   c1.style.position = "relative";
-  //c1.style.zIndex = "100";
-  //c1.style.backgroundImage = "url(" + wdow + ")";
-//ctx.drawImage(fake.inactive.canvas,30,fake.height + 40);
 
-function convert_xpm_to_canvas() {
-      Object.keys(theme.xpm).forEach(function (element){
-              let xpm = get_xpm_data(element);
-              let colors = get_xpm_colortable(xpm.ctable)['table'];
-              let x = 0;
-              let y = 0;
-              //ctx.clearRect(0,0,500,250);
-              theme.img[element] = {canvas: document.createElement('canvas'), width: xpm.width, height: xpm.height};
-              theme.img[element].canvas.id = element;
-              theme.img[element].canvas.width = xpm.width;
-              theme.img[element].canvas.height = xpm.height;
-              theme.img[element].canvas.ctx = theme.img[element].canvas.getContext("2d");
-              for(x=0;x<xpm.width;x++) {
-                  for(y=0;y<xpm.height;y++) {
-                      /* assuming 1 character per pixel for now */
-                      let symbol = xpm.pixels[y][x];
-                      if(colors[symbol]=='None') {
-                        theme.img[element].canvas.ctx.fillStyle = 'rgba(0,0,0,0)';
-                      } else {
-                        theme.img[element].canvas.ctx.fillStyle = '#'+colors[symbol];
-                      }
-                      theme.img[element].canvas.ctx.fillRect(x, y, 1, 1);
-                  }
-              }
-      });
-}
-// returns width, height obj
-function get_xpm_data(file) {
-	let row = theme.xpm[file][0].split(" ");
-  let width = parseInt(row[0]);
-  let height = parseInt(row[1]);
-  let colors = parseInt(row[2]);
-  let cpp = parseInt(row[3])
-  let ctable = theme.xpm[file].slice(1,colors+1);
-  let pixels = theme.xpm[file].slice(colors+1);
-  return {width: width, height: height, colors: colors, cpp: cpp, ctable: ctable, pixels:pixels};
-}
-function get_xpm_colortable(ctable, cpp) {
-    let generated_table = [];
-    let i = 0;
-    for(i=0;i<ctable.length;i++) {
-      //assumes 1cpp
-      let entry = ctable[i];
-      let symbol = entry[0];
-      //let color_block = tabs[1];
-      //color_block = color_block.split(" ");
-      let color_block = entry.substr(1).match(/\w+/gm);
-      let k = 0;
-      for(k=0;k<color_block.length;k+=2) {
-        /*only interested in the 'c' color stuff atm*/
-          if (color_block[k] == "c") {
-            generated_table[symbol] = color_block[k+1];
-          }
-      }
+dragElement(document.getElementById("window_1"));
+
+function dragElement(decoration) {
+  var oldx = 0, oldy = 0;
+  decoration.onmousedown = function (e) {
+    if (e.target.id == decoration.id) {
+      oldx = e.clientX;
+      oldy = e.clientY;
+      document.onmouseup = function() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      };
+      document.onmousemove = function (e) {
+        let x = oldx - e.clientX;
+        let y = oldy - e.clientY;
+        oldx = e.clientX;
+        oldy = e.clientY;
+        decoration.style.top = (decoration.offsetTop - y) + "px";
+        decoration.style.left = (decoration.offsetLeft - x) + "px";
+      };
     }
-      return {length: i, table: generated_table};
   }
+}
 
-/*
-The c means "color", it's possible to add m for "monochrome" output, g for "grayscale", and s for "symbolic", explaining what a defined color is supposed to do.
-
-"&      c #B4BAB4 s active_mid_2",
-
-
-
-
-List of decoration part names.
-
-| menu-active         | menu-inactive         | menu-prelight     | menu-pressed     |                         |                           |                           |                          |
-| shade-active        | shade-inactive        | shade-prelight    | shade-pressed    | shade-toggled-active    | shade-toggled-inactive    | shade-toggled-prelight    | shade-toggled-pressed    |
-| stick-active        | stick-inactive        | stick-prelight    | stick-pressed    | stick-toggled-active    | stick-toggled-inactive    | stick-toggled-prelight    | stick-toggled-pressed    |
-| hide-active         | hide-inactive         | hide-prelight     | hide-pressed     |                         |                           |                           |                          |
-| maximize-active     | maximize-inactive     | maximize-prelight | maximize-pressed | maximize-toggled-active | maximize-toggled-inactive | maximize-toggled-prelight | maximize-toggled-pressed |
-| close-active        | close-inactive        | close-prelight    | close-pressed    |                         |                           |                           |                          |
-| top-left-active     | top-left-inactive     |                   |                  |                         |                           |                           |                          |
-| title-1-active      | title-1-inactive      |                   |                  |                         |                           |                           |                          |
-| title-2-active      | title-2-inactive      |                   |                  |                         |                           |                           |                          |
-| title-3-active      | title-3-inactive      |                   |                  |                         |                           |                           |                          |
-| title-4-active      | title-4-inactive      |                   |                  |                         |                           |                           |                          |
-| title-5-active      | title-5-inactive      |                   |                  |                         |                           |                           |                          |
-| top-right-active    | top-right-inactive    |                   |                  |                         |                           |                           |                          |
-| right-active        | right-inactive        |                   |                  |                         |                           |                           |                          |
-| bottom-right-active | bottom-right-inactive |                   |                  |                         |                           |                           |                          |
-| bottom-active       | bottom-inactive       |                   |                  |                         |                           |                           |                          |
-| bottom-left-active  | bottom-left-inactive  |                   |                  |                         |                           |                           |                          |
-| left-active         | left-inactive         |                   |                  |                         |                           |                           |                          |
-*/
 </script>
