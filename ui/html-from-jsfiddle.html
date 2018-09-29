@@ -1778,7 +1778,8 @@ var fake = {
   y: 40,
 	mode: "active",
   active: {},
-  inactive: {}
+  inactive: {},
+  title: "Application"
 };
 var modes = ['active','inactive'];
 for (var mode of modes) {
@@ -1872,10 +1873,18 @@ for (var mode of modes) {
   img = theme.img['bottom_right_'+mode];
   fake[mode].canvas.ctx.drawImage(img.canvas, fake.width - img.width,fake.height-img.height);
 
-
+/*
   fake[mode].canvas.ctx.fillStyle = '#53a600';
   fake[mode].canvas.ctx.fillRect(fake.origin.x, fake.origin.y, w, h);
-
+*/
+  fake[mode].canvas.ctx.fillStyle = '#ffffff';
+  fake[mode].canvas.ctx.font="18px Arial";
+  let text_width = fake[mode].canvas.ctx.measureText(fake.title).width;
+  let text_height = fake[mode].canvas.ctx.measureText("M").width+4;
+  fake[mode].canvas.ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+  fake[mode].canvas.ctx.lineWidth=2;
+  fake[mode].canvas.ctx.strokeText(fake.title,(fake.width /2) - (text_width/2)  +1,text_height +1);
+  fake[mode].canvas.ctx.fillText(fake.title,(fake.width /2) - (text_width/2),text_height);
 }
 
 /* 
