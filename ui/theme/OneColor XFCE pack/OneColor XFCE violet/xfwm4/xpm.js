@@ -1,39 +1,138 @@
-<style>
-body {
-  background-color: #acb4c1;
-  user-select: none;
-  background: url(https://thewallpaper.co/wp-content/uploads/2017/07/nature-hd-stock-photo-green-4k-animal-images-wallpapers-high-definiton-geographicfree-wallpaper-hd-mobile-4k-crab-animal-national_1918x1198.jpg) no-repeat center center fixed; 
-  background-size: cover;
-}
-div.content {
-  background-color: #c0c0c0;
-}
-div.window {
-  box-shadow: 5px 10px 20px rgba(0,0,0,0.3);
-}
-</style>
-<div id="window_1" class="window">
-  <div id="content_1" class="content">
-  </div>
-</div>
-<script>
 
-function xpm_template()
-{
-  this.button_offset=1;
-  this.button_spacing=1;
-  this.full_width_title=true;
-  this.title_horizontal_offset=2;
-  this.title_vertical_offset_active=3;
-  this.title_vertical_offset_inactive=3;
-  this.title_shadow_active=false;
-  this.title_shadow_inactive=false;
-   this.xpm = {};
-   this.c = {};
-   this.img = {};
+// G_TYPE_MAKE_FUNDAMENTAL
+const G_TYPE_BOOLEAN = 5;
+const G_TYPE_INT = 6;
+const G_TYPE_INVALID = 0;
+const G_TYPE_STRING = 16;
+const NULL = null;
+const TRUE = true;
+const FALSE = false;
 
+function xpm_template() {
+/*
+this.active_text_color=#ffffff;
+this.inactive_text_color=#000000;
+this.button_offset=0;
+this.button_spacing=0;
+this.full_width_title=false;
+this.maximized_offset=8;
+this.show_app_icon=false;
+this.title_horizontal_offset=0;
+this.title_shadow_active=false;
+this.title_shadow_inactive=false;
+this.title_vertical_offset_active=0;
+this.title_vertical_offset_inactive=0;
+*/
 
-
+this.xpm = {};this.c = {};
+    this.c.settings = [
+        /* Do not change the order of the following parameters */
+        ["active_text_color", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_text_color", NULL, G_TYPE_STRING, FALSE],
+        ["active_text_shadow_color", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_text_shadow_color", NULL, G_TYPE_STRING, FALSE],
+        ["active_border_color", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_border_color", NULL, G_TYPE_STRING, FALSE],
+        ["active_color_1", NULL, G_TYPE_STRING, FALSE],
+        ["active_hilight_1", NULL, G_TYPE_STRING, FALSE],
+        ["active_shadow_1", NULL, G_TYPE_STRING, FALSE],
+        ["active_mid_1", NULL, G_TYPE_STRING, FALSE],
+        ["active_text_color_2", NULL, G_TYPE_STRING, FALSE],
+        ["active_color_2", NULL, G_TYPE_STRING, FALSE],
+        ["active_hilight_2", NULL, G_TYPE_STRING, FALSE],
+        ["active_shadow_2", NULL, G_TYPE_STRING, FALSE],
+        ["active_mid_2", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_color_1", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_hilight_1", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_shadow_1", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_mid_1", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_text_color_2", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_color_2", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_hilight_2", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_shadow_2", NULL, G_TYPE_STRING, FALSE],
+        ["inactive_mid_2", NULL, G_TYPE_STRING, FALSE],
+        /* You can change the order of the following parameters */
+        ["activate_action", NULL, G_TYPE_STRING, TRUE],
+        ["borderless_maximize", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["box_move", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["box_resize", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["button_layout", NULL, G_TYPE_STRING, TRUE],
+        ["button_offset", NULL, G_TYPE_INT, TRUE],
+        ["button_spacing", NULL, G_TYPE_INT, TRUE],
+        ["click_to_focus", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["cycle_apps_only", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["cycle_draw_frame", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["cycle_hidden", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["cycle_minimum", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["cycle_preview", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["cycle_tabwin_mode", NULL, G_TYPE_INT, FALSE],
+        ["cycle_workspaces", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["double_click_action", NULL, G_TYPE_STRING, TRUE],
+        ["double_click_distance", NULL, G_TYPE_INT, TRUE],
+        ["double_click_time", NULL, G_TYPE_INT, TRUE],
+        ["easy_click", NULL, G_TYPE_STRING, TRUE],
+        ["focus_delay", NULL, G_TYPE_INT, TRUE],
+        ["focus_hint", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["focus_new", NULL, G_TYPE_BOOLEAN,TRUE],
+        ["frame_opacity", NULL, G_TYPE_INT, TRUE],
+        ["full_width_title", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["horiz_scroll_opacity", NULL, G_TYPE_BOOLEAN, FALSE],
+        ["inactive_opacity", NULL, G_TYPE_INT, TRUE],
+        ["margin_bottom", NULL, G_TYPE_INT, FALSE],
+        ["margin_left", NULL, G_TYPE_INT, FALSE],
+        ["margin_right", NULL, G_TYPE_INT, FALSE],
+        ["margin_top", NULL, G_TYPE_INT, FALSE],
+        ["maximized_offset", NULL, G_TYPE_INT, TRUE],
+        ["mousewheel_rollup", NULL, G_TYPE_BOOLEAN, FALSE],
+        ["move_opacity", NULL, G_TYPE_INT, TRUE],
+        ["placement_mode", NULL, G_TYPE_STRING, TRUE],
+        ["placement_ratio", NULL, G_TYPE_INT, TRUE],
+        ["popup_opacity", NULL, G_TYPE_INT, TRUE],
+        ["prevent_focus_stealing", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["raise_delay", NULL, G_TYPE_INT, TRUE],
+        ["raise_on_click", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["raise_on_focus", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["raise_with_any_button", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["repeat_urgent_blink", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["resize_opacity", NULL, G_TYPE_INT, TRUE],
+        ["scroll_workspaces", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["shadow_delta_height", NULL, G_TYPE_INT, TRUE],
+        ["shadow_delta_width", NULL, G_TYPE_INT, TRUE],
+        ["shadow_delta_x", NULL, G_TYPE_INT, TRUE],
+        ["shadow_delta_y", NULL, G_TYPE_INT, TRUE],
+        ["shadow_opacity", NULL, G_TYPE_INT, TRUE],
+        ["show_app_icon", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["show_dock_shadow", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["show_frame_shadow", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["show_popup_shadow", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["snap_resist", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["snap_to_border", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["snap_to_windows", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["snap_width", NULL, G_TYPE_INT, TRUE],
+        ["sync_to_vblank", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["theme", NULL, G_TYPE_STRING, TRUE],
+        ["tile_on_move", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["title_alignment", NULL, G_TYPE_STRING, TRUE],
+        ["title_font", NULL, G_TYPE_STRING, FALSE],
+        ["title_horizontal_offset", NULL, G_TYPE_INT, TRUE],
+        ["titleless_maximize", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["title_shadow_active", NULL, G_TYPE_STRING, TRUE],
+        ["title_shadow_inactive", NULL, G_TYPE_STRING, TRUE],
+        ["title_vertical_offset_active", NULL, G_TYPE_INT, TRUE],
+        ["title_vertical_offset_inactive", NULL, G_TYPE_INT, TRUE],
+        ["toggle_workspaces", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["unredirect_overlays", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["urgent_blink", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["use_compositing", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["workspace_count", NULL, G_TYPE_INT, TRUE],
+        ["wrap_cycle", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["wrap_layout", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["wrap_resistance", NULL, G_TYPE_INT, TRUE],
+        ["wrap_windows", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["wrap_workspaces", NULL, G_TYPE_BOOLEAN, TRUE],
+        ["zoom_desktop", NULL, G_TYPE_BOOLEAN, TRUE],
+        [NULL, NULL, G_TYPE_INVALID, FALSE]
+    ];
 this.xpm.bottom_active = [
 "24 5 2 1",
 " 	c None",
@@ -1934,47 +2033,29 @@ this.xpm.top_right_inactive = [
 "+++++...",
 "+++++...",
 "+++++..."];
+}
 
+var theme = new xpm_template();
 
+Object.keys(theme.xpm).forEach(function (element){
+        let xpm = get_xpm_data(element);
+        let ctable = get_xpm_colortable(xpm.ctable, 1);
+        console.log(element, xpm.width, xpm.height, xpm.colors, xpm.cpp);
+});
 
-this.convert_xpm_to_canvas = function () {
-      Object.keys(this.xpm).forEach(function (element){
-              let xpm = this.get_xpm_data(element);
-              let colors = this.get_xpm_colortable(xpm.ctable)['table'];
-              let x = 0;
-              let y = 0;
-              //ctx.clearRect(0,0,500,250);
-              this.img[element] = {canvas: document.createElement('canvas'), width: xpm.width, height: xpm.height};
-              this.img[element].canvas.id = element;
-              this.img[element].canvas.width = xpm.width;
-              this.img[element].canvas.height = xpm.height;
-              this.img[element].canvas.ctx = this.img[element].canvas.getContext("2d");
-              for(x=0;x<xpm.width;x++) {
-                  for(y=0;y<xpm.height;y++) {
-                      /* assuming 1 character per pixel for now */
-                      let symbol = xpm.pixels[y][x];
-                      if(colors[symbol]=='None') {
-                        this.img[element].canvas.ctx.fillStyle = 'rgba(0,0,0,0)';
-                      } else {
-                        this.img[element].canvas.ctx.fillStyle = '#'+colors[symbol];
-                      }
-                      this.img[element].canvas.ctx.fillRect(x, y, 1, 1);
-                  }
-              }
-      }.bind(this));
-};
 // returns width, height obj
-this.get_xpm_data = function (file) {
-	let row = this.xpm[file][0].split(" ");
+function get_xpm_data(data) {
+  let row = theme.xpm[data][0].split(" ");
   let width = parseInt(row[0]);
   let height = parseInt(row[1]);
   let colors = parseInt(row[2]);
   let cpp = parseInt(row[3])
-  let ctable = this.xpm[file].slice(1,colors+1);
-  let pixels = this.xpm[file].slice(colors+1);
+  let ctable = theme.xpm[data].slice(1,colors+1);
+  let pixels = theme.xpm[data].slice(colors+1);
   return {width: width, height: height, colors: colors, cpp: cpp, ctable: ctable, pixels:pixels};
-};
-this.get_xpm_colortable= function (ctable, cpp) {
+}
+
+function get_xpm_colortable(ctable, cpp) {
     let generated_table = [];
     let i = 0;
     for(i=0;i<ctable.length;i++) {
@@ -1986,194 +2067,39 @@ this.get_xpm_colortable= function (ctable, cpp) {
       let color_block = entry.substr(1).match(/\w+/gm);
       let k = 0;
       for(k=0;k<color_block.length;k+=2) {
-        /*only interested in the 'c' color stuff atm*/
+        /*only interested in the c color stuff atm*/
           if (color_block[k] == "c") {
             generated_table[symbol] = color_block[k+1];
           }
       }
     }
       return {length: i, table: generated_table};
-  };
+  }
 
-}
 
-var theme = new xpm_template();
-theme.convert_xpm_to_canvas();
+
+
 
 /*
-var dialog = {
-		structure: {
-    	top:['top_left','title_1','title_2','title_3','title_4','title_5'],
-      middle:['left', 'right'],
-      bottom:['bottom_left', 'bottom', 'bottom_right']
-    }
-};
+List of decoration part names.
+
+| menu-active         | menu-inactive         | menu-prelight     | menu-pressed     |                         |                           |                           |                          |
+| shade-active        | shade-inactive        | shade-prelight    | shade-pressed    | shade-toggled-active    | shade-toggled-inactive    | shade-toggled-prelight    | shade-toggled-pressed    |
+| stick-active        | stick-inactive        | stick-prelight    | stick-pressed    | stick-toggled-active    | stick-toggled-inactive    | stick-toggled-prelight    | stick-toggled-pressed    |
+| hide-active         | hide-inactive         | hide-prelight     | hide-pressed     |                         |                           |                           |                          |
+| maximize-active     | maximize-inactive     | maximize-prelight | maximize-pressed | maximize-toggled-active | maximize-toggled-inactive | maximize-toggled-prelight | maximize-toggled-pressed |
+| close-active        | close-inactive        | close-prelight    | close-pressed    |                         |                           |                           |                          |
+| top-left-active     | top-left-inactive     |                   |                  |                         |                           |                           |                          |
+| title-1-active      | title-1-inactive      |                   |                  |                         |                           |                           |                          |
+| title-2-active      | title-2-inactive      |                   |                  |                         |                           |                           |                          |
+| title-3-active      | title-3-inactive      |                   |                  |                         |                           |                           |                          |
+| title-4-active      | title-4-inactive      |                   |                  |                         |                           |                           |                          |
+| title-5-active      | title-5-inactive      |                   |                  |                         |                           |                           |                          |
+| top-right-active    | top-right-inactive    |                   |                  |                         |                           |                           |                          |
+| right-active        | right-inactive        |                   |                  |                         |                           |                           |                          |
+| bottom-right-active | bottom-right-inactive |                   |                  |                         |                           |                           |                          |
+| bottom-active       | bottom-inactive       |                   |                  |                         |                           |                           |                          |
+| bottom-left-active  | bottom-left-inactive  |                   |                  |                         |                           |                           |                          |
+| left-active         | left-inactive         |                   |                  |                         |                           |                           |                          |
 */
-var w = 400;
-var h = 200;
-var fake = {
-  origin: {x:theme.img['left_active'].width,y:theme.img['top_left_active'].height},
-  w: w,
-  h: h,
-  width: w + (theme.img['left_active'].width*2),
-  height:h + (theme.img['top_left_active'].height + theme.img['bottom_active'].height),
-  x: 20,
-  y: 40,
-	mode: "active",
-  active: {},
-  inactive: {},
-  title: "Application"
-};
-var modes = ['active','inactive'];
-for (var mode of modes) {
-  let i = 0, xoffset = 0, img = {}, yoffset = 0; 
-  fake[mode].canvas = document.createElement('canvas');
-  fake[mode].canvas.width = fake.width;
-  fake[mode].canvas.height = fake.height;
-  fake[mode].canvas.ctx = fake[mode].canvas.getContext("2d");
 
-  
-  img = theme.img['title_3_'+mode];
-  xoffset = theme.img['top_left_'+mode].width;
-	for(i=xoffset;i<fake.width-theme.img['top_left_'+mode].width-theme.img['top_right_'+mode].width;i+=img.width) {
-  	fake[mode].canvas.ctx.drawImage(img.canvas, i, 0);
-		//xoffset+=img.width;
-  }
-
-  img = theme.img['bottom_'+mode];
-  yoffset = fake.height - img.height;
-  xoffset = theme.img['top_left_'+mode].width;
-	for(i=xoffset;i<fake.width-theme.img['top_left_'+mode].width-theme.img['top_right_'+mode].width;i+=img.width) {
-  	fake[mode].canvas.ctx.drawImage(img.canvas, i, yoffset);
-		//xoffset+=img.width;
-  }
- 
- 
-  img = theme.img['left_'+mode];
-  yoffset = theme.img['top_left_'+mode].height;
-	for(i=0;i<fake.height-theme.img['top_left_'+mode].height-theme.img['bottom_left_'+mode].height;i+=img.height) {
-  	fake[mode].canvas.ctx.drawImage(img.canvas, 0, yoffset);
-		yoffset+=img.height;
-  }
-  
-  img = theme.img['right_'+mode];
-  yoffset = theme.img['top_right_'+mode].height;
-	for(i=0;i<fake.height-theme.img['top_right_'+mode].height-theme.img['bottom_right_'+mode].height;i+=img.height) {
-  	fake[mode].canvas.ctx.drawImage(img.canvas, fake.width - img.width, yoffset);
-		yoffset+=img.height;
-  }
-  
-  /*
-  xoffset = 0;
-  img = theme.img['top_left_'+mode];
-  fake[mode].canvas.ctx.drawImage(img.canvas, 0,0);
-  xoffset+=img.width;
-  for(i=1;i<=5;i++) {
-    img = theme.img['title_'+i+'_'+mode];
-  	fake[mode].canvas.ctx.drawImage(img.canvas, xoffset, 0);
-		xoffset+=img.width;
-  }
-  */
-  xoffset = 0;
-  img = theme.img['top_left_'+mode];
-  fake[mode].canvas.ctx.drawImage(img.canvas, 0,0);
-  xoffset+=img.width;
-
-  img = theme.img['title_1_'+mode];
-  fake[mode].canvas.ctx.drawImage(img.canvas, xoffset,0);
-  xoffset+=img.width;
-
-  img = theme.img['title_2_'+mode];
-  fake[mode].canvas.ctx.drawImage(img.canvas, xoffset,0);
-  xoffset+=img.width;
-
-  img = theme.img['top_right_'+mode];
-  xoffset = fake.width - img.width;
-  fake[mode].canvas.ctx.drawImage(img.canvas, xoffset,0);
-
-  img = theme.img['title_5_'+mode];
-  xoffset-=img.width;
-  fake[mode].canvas.ctx.drawImage(img.canvas, xoffset,0);
-  
-
-  img = theme.img['title_4_'+mode];
-  xoffset-=img.width;
-  fake[mode].canvas.ctx.drawImage(img.canvas, xoffset,0);
-
-  /*
-  img = theme.img['top_right_'+mode];
-  xoffset = fake.width - img.width;
-  fake[mode].canvas.ctx.drawImage(img.canvas, xoffset,0);
-  xoffset-=img.width;
-  for(i=5;i>=1;i--) {
-    img = theme.img['title_'+i+'_'+mode];
-  	fake[mode].canvas.ctx.drawImage(img.canvas, xoffset, 0);
-		xoffset-=img.width;
-  }
-  */
-  img = theme.img['bottom_left_'+mode];
-  fake[mode].canvas.ctx.drawImage(img.canvas, 0,fake.height-img.height);
-  img = theme.img['bottom_right_'+mode];
-  fake[mode].canvas.ctx.drawImage(img.canvas, fake.width - img.width,fake.height-img.height);
-
-/*
-  fake[mode].canvas.ctx.fillStyle = '#53a600';
-  fake[mode].canvas.ctx.fillRect(fake.origin.x, fake.origin.y, w, h);
-*/
-  fake[mode].canvas.ctx.fillStyle = '#ffffff';
-  fake[mode].canvas.ctx.font="18px Arial";
-  let text_width = fake[mode].canvas.ctx.measureText(fake.title).width;
-  let text_height = fake[mode].canvas.ctx.measureText("M").width+4;
-  fake[mode].canvas.ctx.strokeStyle = 'rgba(0,0,0,0.3)';
-  fake[mode].canvas.ctx.lineWidth=2;
-  fake[mode].canvas.ctx.strokeText(fake.title,(fake.width /2) - (text_width/2)  +1,text_height +1);
-  fake[mode].canvas.ctx.fillText(fake.title,(fake.width /2) - (text_width/2),text_height);
-}
-
-/* 
-<div id="window_1" class="window">
-  <div id="content_1" class="content"></div>
-</div>
-*/
-  let wdow = fake.active.canvas.toDataURL();
-  let w1 = document.getElementById('window_1');
-  w1.style.width = fake.width + "px";
-  w1.style.height = fake.height + "px";
-  w1.style.top = "30px";
-  w1.style.left = "30px";
-  w1.style.position = "absolute";
-  w1.style.zIndex = "100";
-  w1.style.backgroundImage = "url(" + wdow + ")";
-
-  let c1 = document.getElementById('content_1');
-  c1.style.width = fake.w + "px";
-  c1.style.height = fake.h + "px";
-  c1.style.top = fake.origin.y + "px";
-  c1.style.left = fake.origin.x + "px";
-  c1.style.position = "relative";
-
-dragElement(document.getElementById("window_1"));
-
-function dragElement(decoration) {
-  var oldx = 0, oldy = 0;
-  decoration.onmousedown = function (e) {
-    if (e.target.id == decoration.id) {
-      oldx = e.clientX;
-      oldy = e.clientY;
-      document.onmouseup = function() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-      };
-      document.onmousemove = function (e) {
-        let x = oldx - e.clientX;
-        let y = oldy - e.clientY;
-        oldx = e.clientX;
-        oldy = e.clientY;
-        decoration.style.top = (decoration.offsetTop - y) + "px";
-        decoration.style.left = (decoration.offsetLeft - x) + "px";
-      };
-    }
-  }
-}
-
-</script>
